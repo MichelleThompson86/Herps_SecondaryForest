@@ -32,15 +32,15 @@ model{
   
   ## species-specific 
   for(sp in 1:nsp) {
-    alpha1[sp]~dnorm(mu.alpha1, tau.alpha1)T(-5,5) # species-specific coefficient for effect of season logit detection probability
-    alpha2[sp]~dnorm(mu.alpha2, tau.alpha2)T(-5,5) # species-specific coefficient for effect of standardized effort logit detection probability
+    alpha1[sp]~dnorm(mu.alpha1, tau.alpha1) #T(-5,5) # species-specific coefficient for effect of season logit detection probability, can truncate if needed
+    alpha2[sp]~dnorm(mu.alpha2, tau.alpha2)#T(-5,5) # species-specific coefficient for effect of standardized effort logit detection probability, can truncate if needed
   } #end sp loop
   
   #random effect of site on detection
   sigma.site.p ~ dexp(1) 
   tau.site.p <- pow(sigma.site.p, -2)
   
-  for (transect in 1:ntransect) {
+  for (site in 1:nsite) {
     eta.site.p[transect] ~ dnorm(0,tau.site.p)
   }  # end transect loop
   
@@ -60,7 +60,7 @@ model{
   sigma.site.psi ~ dexp(1)  
   tau.site.psi <- pow(sigma.site.psi, -2)
   
-  for(socc in 1:ntransect){
+  for(site in 1:nsite){
     eta.site.psi[socc] ~ dnorm(0, tau.site.psi) # random intercept for each site
   } # end socc loop
   
