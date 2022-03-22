@@ -26,7 +26,7 @@ model{
     for(socc in 1:nsocc){
       season[transect,socc] ~ dnorm(0, 1) 
       effort[transect,socc] ~ dnorm(0, 1)
-    }  #end socc loop
+    }  #end socc (survey occasion) loop
   }  #end ntransect loop
   
   
@@ -42,7 +42,7 @@ model{
   
   for (site in 1:nsite) {
     eta.site.p[site] ~ dnorm(0,tau.site.p)
-  }  # end transect loop
+  }  # end site loop
   
   
   ## **********************************************************************
@@ -62,7 +62,7 @@ model{
   
   for(site in 1:nsite){
     eta.site.psi[site] ~ dnorm(0, tau.site.psi) # random intercept for each site
-  } # end socc loop
+  } # end site loop
   
      
   #Equal vector of probability for tree sampling
