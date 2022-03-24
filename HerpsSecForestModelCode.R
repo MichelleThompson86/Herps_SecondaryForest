@@ -37,7 +37,7 @@ model{
   } #end sp loop
   
   #random effect of site on detection
-  sigma.site.p ~ dexp(1) 
+  sigma.site.p ~ dunif(0,10)  # if data sparse want more shrinkage can use dexp(1)  or half cauchy
   tau.site.p <- pow(sigma.site.p, -2)
   
   for (site in 1:nsite) {
@@ -57,7 +57,7 @@ model{
   
   
   #random effect of site on occupancy
-  sigma.site.psi ~ dexp(1)  
+  sigma.site.psi ~ dunif(0,10) # if data sparse want more shrinkage can use dexp(1)  or half cauchy
   tau.site.psi <- pow(sigma.site.psi, -2)
   
   for(site in 1:nsite){
@@ -258,7 +258,7 @@ model{
   }
   
   #random effect of site on detection
-  sigma.site.p ~ dexp(1) 
+  sigma.site.p ~ ~ dunif(0,10) 
   tau.site.p <- pow(sigma.site.p, -2)
   
   for (site in 1:nsite) {
@@ -278,7 +278,7 @@ model{
   
   
   #random effect of site on occupancy
-  sigma.site.psi ~ dexp(1)  
+  sigma.site.psi ~ dunif(0,10)
   tau.site.psi <- pow(sigma.site.psi, -2)
   for(site in 1:nsite){
     eta.site.psi[site] ~ dnorm(0, tau.site.psi) # random intercept for each site
