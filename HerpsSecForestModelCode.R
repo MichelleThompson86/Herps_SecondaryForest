@@ -258,7 +258,7 @@ model{
   }
   
   #random effect of site on detection
-  sigma.site.p ~ ~ dunif(0,10) 
+  sigma.site.p ~ dunif(0,10) 
   tau.site.p <- pow(sigma.site.p, -2)
   
   for (site in 1:nsite) {
